@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .models import Base
+from .models import Base, Product
 from .lib.db import engine
 from .routers import router as api_router
 
@@ -50,7 +50,7 @@ async def startup_event():
         ]
 
         for product_data in products:
-            db_product = models.Product(**product_data)
+            db_product = Product(**product_data)
             db.add(db_product)
         db.commit()
 
